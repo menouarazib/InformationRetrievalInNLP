@@ -1,0 +1,7 @@
+eventdetector_ts
+gensim
+matplotlib
+nltk
+numpy
+pandas
+scipy
