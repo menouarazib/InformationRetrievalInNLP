@@ -54,3 +54,16 @@ As a result, for each of these texts, we create two cases: one for keyword extra
 To execute keyword extraction just run `keyword_extraction.py` and to execute part of speech tagging just run `part_of_speech_tagging.py`.
 
 The result evaluations of our method across the specified use cases, assessing its performance using three key metrics: F1-Score, Precision, and Recall. The results of these evaluations are presented in “TABLE. I”. Each block represents a use case, and each line within the block is characterized by a distinct configuration of the meta model, involving variations in sliding window width and stacked models.
+
+![TABLE. I](https://raw.githubusercontent.com/menouarazib/InformationRetrievalInNLP/master/images/Results.png)
+
+# References
+[1] M. Azib, B. Renard, P. Garnier, V. Génot, and N. André, “Universal Event Detection in Time Series,” 2023, [Online]. Available: https://doi.org/10.31219/osf.io/uabjg.
+
+[2] Wikimedia Foundation, “Wikimedia Downloads,” [Online]. Available: https://dumps.wikimedia.org.
+
+[3] Hugging Face. ‘Wikipedia Dataset.’ [Online]. Available: https://huggingface.co/datasets/wikipedia/viewer/20220301.en/train.
+
+[4] T. Mikolov, K. Chen, G. Corrado, and J. Dean, “Efficient Estimation of Word Representations in Vector Space,” in Proceedings of Workshop at ICLR, 2013, arXiv:1301.3781v1.
+
+[5] S. Bird, E. Klein, and E. Loper, “Natural Language Processing with Python: Analyzing Text with the Natural Language Toolkit”. O’Reilly Media, Inc., 2009.
