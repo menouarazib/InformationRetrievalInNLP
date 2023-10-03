@@ -1,5 +1,5 @@
 #   Introduction
-In this work, we propose an innovative approach by adapting the technique used for Event Detection in Multivariate Time Series Data (https://doi.org/10.31219/osf.io/uabjg) to address tasks in Natural Language Processing (NLP), specifically keyword extraction and the identification of adjectives for part-of-speech tagging (POS) in textual data.
+In this work, we propose an innovative approach by adapting the technique used for Event Detection in Multivariate Time Series Data [1] to address tasks in Natural Language Processing (NLP), specifically keyword extraction and the identification of adjectives for part-of-speech tagging (POS) in textual data.
 
 # Requirements
 You must have the `eventdetector-ts` package installed. You can find it [here](https://pypi.org/project/eventdetector-ts/). Additionally, please refer to the `requirements.txt` file for a list of other necessary libraries.
@@ -40,4 +40,17 @@ between these positions and corresponding timestamps based on the index of `time
 
 # Keyword Extraction & Part of Speech Tagging
 For this evaluation, we have selected a set of 20 reference keywords associated with Autism and Anarchism texts. Additionally, the list of ground true tags (here we choose only adjectives) has been obtained using the Natural Language Toolkit library [5] on these texts.
+```python
+# Get the index positions of important words in the list of tokens
+keywords_positions = [index for index, token in enumerate(tokens) if token in keywords]
+
+events = []
+for p in keywords_positions:
+    events.append(time_series.index[p])
+```
+
 As a result, for each of these texts, we create two cases: one for keyword extraction (Autism (Keys) and Anarchism (Keys)) and another for finding adjectives (Autism (POS) and Anarchism (POS)), as outlined in “TABLE. I”.
+
+To execute keyword extraction just run `keyword_extraction.py` and to execute part of speech tagging just run `part_of_speech_tagging.py`.
+
+The result evaluations of our method across the specified use cases, assessing its performance using three key metrics: F1-Score, Precision, and Recall. The results of these evaluations are presented in “TABLE. I”. Each block represents a use case, and each line within the block is characterized by a distinct configuration of the meta model, involving variations in sliding window width and stacked models.
