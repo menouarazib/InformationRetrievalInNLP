@@ -6,7 +6,7 @@ You must have the `eventdetector-ts` package installed. You can find it [here](h
 
 # Datasets
 We use two extensive English texts sourced from the Wikipedia dump [[2]](#2). One of these texts centers around Autism [[3]](#3), while the other delves into Anarchism [[3]](#3). To effectively utilize `eventdetector-ts`  package, originally tailored for real-time series data and temporal events, we must first convert these texts into real-time series.
-And, represent ground true keywords and tags as real-time events.
+And, represent ground truth keywords and tags as real-time events.
 
 # Text As Time Series using Word2Vec
 To convert a text into a real-time series, we initially tokenize the text into individual words. Following tokenization, we leverage word embedding techniques like Word2Vec [[4]](#4). Word2Vec transforms words into dense numerical representations within a high-dimensional space, typically comprising 300 features.
@@ -35,7 +35,7 @@ start_date = '2023-03-23'
 time_series = pd.DataFrame(word_vectors, index=pd.date_range(start=start_date, periods=len(words), freq='1S'), columns=[f'WordVector_{i + 1}' for i in range(300)])
 ```
 
-Given those keywords and tags may occur at various positions within the text (which has been transformed into a time series represented as a dataframe, `time_seres`), we establish a mapping
+Given the ground truth keywords and tags may occur at various positions within the text (which has been transformed into a time series represented as a dataframe, `time_seres`), we establish a mapping
 between these positions and corresponding timestamps based on the index of `time_series`. This mapping enables us to convert occurrences of keywords and adjectives within the text into temporal values. Subsequently, by specifying a value for the event’s width (`width_events`), we represent them as temporal events.
 
 # Keyword Extraction & Part of Speech Tagging
