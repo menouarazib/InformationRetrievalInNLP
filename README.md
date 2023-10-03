@@ -1,15 +1,15 @@
 #   Introduction
-In this work, we propose an innovative approach by adapting the technique used for Event Detection in Multivariate Time Series Data [1] to address tasks in Natural Language Processing (NLP), specifically keyword extraction and the identification of adjectives for part-of-speech tagging (POS) in textual data.
+In this work, we propose an innovative approach by adapting the technique used for Event Detection in Multivariate Time Series Data [[1]](#1) to address tasks in Natural Language Processing (NLP), specifically keyword extraction and the identification of tags for part-of-speech tagging (POS) in textual data.
 
 # Requirements
 You must have the `eventdetector-ts` package installed. You can find it [here](https://pypi.org/project/eventdetector-ts/). Additionally, please refer to the `requirements.txt` file for a list of other necessary libraries.
 
 # Datasets
-We use two extensive English texts sourced from the Wikipedia dump [2]. One of these texts centers around Autism [3], while the other delves into Anarchism [3]. To effectively utilize `eventdetector-ts`  package, originally tailored for real-time series data and temporal events, we must first convert these texts into real-time series.
+We use two extensive English texts sourced from the Wikipedia dump [[2]](#2). One of these texts centers around Autism [[3]](#3), while the other delves into Anarchism [[3]](#3). To effectively utilize `eventdetector-ts`  package, originally tailored for real-time series data and temporal events, we must first convert these texts into real-time series.
 And, represent ground true keywords and tags as real-time events.
 
 # Text As Time Series using Word2Vec
-To convert a text into a real-time series, we initially tokenize the text into individual words. Following tokenization, we leverage word embedding techniques like Word2Vec [4]. Word2Vec transforms words into dense numerical representations within a high-dimensional space, typically comprising 300 features.
+To convert a text into a real-time series, we initially tokenize the text into individual words. Following tokenization, we leverage word embedding techniques like Word2Vec [[4]](#4). Word2Vec transforms words into dense numerical representations within a high-dimensional space, typically comprising 300 features.
 The following code snippet illustrates this process:
 ```python
 from gensim.models import Word2Vec
@@ -39,7 +39,7 @@ Given those keywords and tags may occur at various positions within the text (wh
 between these positions and corresponding timestamps based on the index of `time_series`. This mapping enables us to convert occurrences of keywords and adjectives within the text into temporal values. Subsequently, by specifying a value for the event’s width (`width_events`), we represent them as temporal events.
 
 # Keyword Extraction & Part of Speech Tagging
-For this evaluation, we have selected a set of 20 reference keywords associated with Autism and Anarchism texts. Additionally, the list of ground true tags (here we choose only adjectives) has been obtained using the Natural Language Toolkit library [5] on these texts.
+For this evaluation, we have selected a set of 20 reference keywords associated with Autism and Anarchism texts. Additionally, the list of ground true tags (here we choose only adjectives) has been obtained using the Natural Language Toolkit library [[5]](#5) on these texts.
 ```python
 # Get the index positions of important words in the list of tokens
 keywords_positions = [index for index, token in enumerate(tokens) if token in keywords]
@@ -58,12 +58,17 @@ The result evaluations of our method across the specified use cases, assessing i
 ![TABLE. I](https://raw.githubusercontent.com/menouarazib/InformationRetrievalInNLP/master/images/Results.png)
 
 # References
-[1] M. Azib, B. Renard, P. Garnier, V. Génot, and N. André, “Universal Event Detection in Time Series,” 2023, [Online]. Available: https://doi.org/10.31219/osf.io/uabjg.
+<a id="1"> [1] M. Azib, B. Renard, P. Garnier, V. Génot, and N. André, “Universal Event Detection in Time Series,” 2023, [Online]. Available: https://doi.org/10.31219/osf.io/uabjg.
+</a>
 
-[2] Wikimedia Foundation, “Wikimedia Downloads,” [Online]. Available: https://dumps.wikimedia.org.
+<a id="2"> [2] Wikimedia Foundation, “Wikimedia Downloads,” [Online]. Available: https://dumps.wikimedia.org.
+</a>
 
-[3] Hugging Face. ‘Wikipedia Dataset.’ [Online]. Available: https://huggingface.co/datasets/wikipedia/viewer/20220301.en/train.
+<a id="3"> [3] Hugging Face. ‘Wikipedia Dataset.’ [Online]. Available: https://huggingface.co/datasets/wikipedia/viewer/20220301.en/train.
+</a>
 
-[4] T. Mikolov, K. Chen, G. Corrado, and J. Dean, “Efficient Estimation of Word Representations in Vector Space,” in Proceedings of Workshop at ICLR, 2013, arXiv:1301.3781v1.
+<a id="4"> [4] T. Mikolov, K. Chen, G. Corrado, and J. Dean, “Efficient Estimation of Word Representations in Vector Space,” in Proceedings of Workshop at ICLR, 2013, arXiv:1301.3781v1.
+</a>
 
-[5] S. Bird, E. Klein, and E. Loper, “Natural Language Processing with Python: Analyzing Text with the Natural Language Toolkit”. O’Reilly Media, Inc., 2009.
+<a id="5"> [5] S. Bird, E. Klein, and E. Loper, “Natural Language Processing with Python: Analyzing Text with the Natural Language Toolkit”. O’Reilly Media, Inc., 2009.
+</a>
