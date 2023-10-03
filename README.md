@@ -12,31 +12,29 @@ And, represent ground truth keywords and tags as real-time events.
 To convert a text into a real-time series, we initially tokenize the text into individual words. Following tokenization, we leverage word embedding techniques like Word2Vec [[4]](#4). Word2Vec transforms words into dense numerical representations within a high-dimensional space, typically comprising 300 features.
 The following code snippet illustrates this process:
 ```python
-from gensim.models import Word2Vec
-from nltk.tokenize import word_tokenize
-import pandas as pd
+import gensim.downloader as api
 import numpy as np
+import pandas as pd
 
+from utils.utils import go_tokenize
 
-text = ...
+file_name = "./data/anarchism.txt"  # file_name = "./data/autism.txt"
 
-# Tokenize the text into words
-words = word_tokenize(text)
+with open(file_name, 'r') as file:
+    content = file.read()
 
-# Load Word2Vec pre-trained model
-model_name = "word2vec-google-news-300"
-word2vec_model = Word2Vec.load(model_name)
+tokens = go_tokenize(content=content, use_stop_words=False, use_is_alpha=False)
 
+time_series = pd.DataFrame(index=pd.date_range(start='2023-03-23 00:00:00', periods=len(tokens),
+                                      freq='1S'))
+# Load Word2Vec pre-trained model (you can use other word embedding models too)
+word2vec_model = api.load("word2vec-google-news-300")
 # Represent each word as a float value vector using Word2Vec embeddings
-word_vectors = [word2vec_model[word] if word in word2vec_model else np.zeros(300) for word in words]
-
-# Create a DataFrame with the word vectors and set the index to have a frequency of 1 second
-start_date = '2023-03-23'
-time_series = pd.DataFrame(word_vectors, index=pd.date_range(start=start_date, periods=len(words), freq='1S'), columns=[f'WordVector_{i + 1}' for i in range(300)])
+time_series['WordVector'] = [word2vec_model[word] if word in word2vec_model else np.zeros(300) for word in tokens]
+time_series = pd.DataFrame(time_series['WordVector'].to_list(), index=time_series.index, columns=[f'WordVector_{i + 1}' for i in range(300)])
 ```
 
-Given the ground truth keywords and tags may occur at various positions within the text (which has been transformed into a time series represented as a dataframe, `time_seres`), we establish a mapping
-between these positions and corresponding timestamps based on the index of `time_series`. This mapping enables us to convert occurrences of keywords and tags within the text into temporal values. Subsequently, by specifying a value for the event’s width (`width_events`), we represent them as temporal events.
+Given the ground truth keywords and tags may occur at various positions within the text (which has been transformed into a time series represented as a dataframe, `time_seres`), we establish a mapping between these positions and corresponding timestamps based on the index of `time_series`. This mapping enables us to convert occurrences of keywords and tags within the text into temporal values. Subsequently, by specifying a value for the event’s width (`width_events`), we represent them as temporal events.
 ```python
 # Get the index positions of important words in the list of tokens
 keywords_positions = [index for index, token in enumerate(tokens) if token in keywords]
