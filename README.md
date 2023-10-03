@@ -55,6 +55,7 @@ The result evaluations of our method across the specified use cases, assessing i
 
 ![TABLE. I](https://raw.githubusercontent.com/menouarazib/InformationRetrievalInNLP/master/images/Results.png)
 
+For a comprehensive understanding of the arguments presented in this table, please refer to the [full documentation](https://github.com/menouarazib/eventdetector#documentation) provided here.
 # References
 <a id="1"> [1] M. Azib, B. Renard, P. Garnier, V. Génot, and N. André, “Universal Event Detection in Time Series,” 2023, [Online]. Available: https://doi.org/10.31219/osf.io/uabjg.
 </a>
