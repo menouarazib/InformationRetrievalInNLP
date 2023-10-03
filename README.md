@@ -37,9 +37,6 @@ time_series = pd.DataFrame(word_vectors, index=pd.date_range(start=start_date, p
 
 Given the ground truth keywords and tags may occur at various positions within the text (which has been transformed into a time series represented as a dataframe, `time_seres`), we establish a mapping
 between these positions and corresponding timestamps based on the index of `time_series`. This mapping enables us to convert occurrences of keywords and adjectives within the text into temporal values. Subsequently, by specifying a value for the event’s width (`width_events`), we represent them as temporal events.
-
-# Keyword Extraction & Part of Speech Tagging
-For this evaluation, we have selected a set of 20 reference keywords associated with Autism and Anarchism texts. Additionally, the list of ground true tags (here we choose only adjectives) has been obtained using the Natural Language Toolkit library [[5]](#5) on these texts.
 ```python
 # Get the index positions of important words in the list of tokens
 keywords_positions = [index for index, token in enumerate(tokens) if token in keywords]
@@ -48,6 +45,9 @@ events = []
 for p in keywords_positions:
     events.append(time_series.index[p])
 ```
+
+# Keyword Extraction & Part of Speech Tagging
+For this evaluation, we have selected a set of 20 reference keywords associated with Autism and Anarchism texts. Additionally, the list of ground true tags (here we choose only adjectives) has been obtained using the Natural Language Toolkit library [[5]](#5) on these texts.
 
 As a result, for each of these texts, we create two cases: one for keyword extraction (Autism (Keys) and Anarchism (Keys)) and another for finding adjectives (Autism (POS) and Anarchism (POS)), as outlined in “TABLE. I”.
 
