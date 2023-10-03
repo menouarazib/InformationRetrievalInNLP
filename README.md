@@ -4,14 +4,18 @@ In this work, we propose an innovative approach by adapting the technique used f
 # Requirements
 You must have the `eventdetector-ts` package installed. You can find it [here](https://pypi.org/project/eventdetector-ts/). Additionally, please refer to the `requirements.txt` file for a list of other necessary libraries.
 
-# Text As Time Series
-To utilize the `eventdetector-ts` package, originally tailored for multivariate real-time series data and temporal events, we must first convert these texts into real-time series. Subsequently, we’ll establish a mapping between keywords and adjectives to represent them as real-time events. To convert a text into a real-time series, we initially tokenize the text into individual words. Following tokenization,
-we leverage word embedding techniques like Word2Vec. Word2Vec transforms words into dense numerical representations within a high-dimensional space, typically comprising 300 features.
+# Datasets
+We use two extensive English texts sourced from the Wikipedia dump [2]. One of these texts centers around Autism [3], while the other delves into Anarchism [3]. To effectively utilize `eventdetector-ts`  package, originally tailored for real-time series data and temporal events, we must first convert these texts into real-time series.
+And, represent ground true keywords and tags as real-time events.
+
+# Text As Time Series using Word2Vec
+To convert a text into a real-time series, we initially tokenize the text into individual words. Following tokenization, we leverage word embedding techniques like Word2Vec [4]. Word2Vec transforms words into dense numerical representations within a high-dimensional space, typically comprising 300 features.
 The following code snippet illustrates this process:
 ```python
 from gensim.models import Word2Vec
 from nltk.tokenize import word_tokenize
 import pandas as pd
+import numpy as np
 
 
 text = ...
@@ -30,3 +34,10 @@ word_vectors = [word2vec_model[word] if word in word2vec_model else np.zeros(300
 start_date = '2023-03-23'
 time_series = pd.DataFrame(word_vectors, index=pd.date_range(start=start_date, periods=len(words), freq='1S'), columns=[f'WordVector_{i + 1}' for i in range(300)])
 ```
+
+Given those keywords and tags may occur at various positions within the text (which has been transformed into a time series represented as a dataframe, `time_seres`), we establish a mapping
+between these positions and corresponding timestamps based on the index of `time_series`. This mapping enables us to convert occurrences of keywords and adjectives within the text into temporal values. Subsequently, by specifying a value for the event’s width (`width_events`), we represent them as temporal events.
+
+# Keyword Extraction & Part of Speech Tagging
+For this evaluation, we have selected a set of 20 reference keywords associated with Autism and Anarchism texts. Additionally, the list of ground true tags (here we choose only adjectives) has been obtained using the Natural Language Toolkit library [5] on these texts.
+As a result, for each of these texts, we create two cases: one for keyword extraction (Autism (Keys) and Anarchism (Keys)) and another for finding adjectives (Autism (POS) and Anarchism (POS)), as outlined in “TABLE. I”.
