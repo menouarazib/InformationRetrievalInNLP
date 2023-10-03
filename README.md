@@ -47,7 +47,7 @@ for p in keywords_positions:
 ```
 
 # Keyword Extraction & Part of Speech Tagging
-For this evaluation, we have selected a set of 20 reference keywords associated with Autism and Anarchism texts. Additionally, the list of ground true tags (here we choose only adjectives) has been obtained using the Natural Language Toolkit library [[5]](#5) on these texts.
+For this evaluation, we have selected a set of 20 ground truth keywords associated with Autism and Anarchism texts. Additionally, the list of ground truth tags (here we choose only adjectives) has been obtained using the Natural Language Toolkit library [[5]](#5) on these texts.
 
 As a result, for each of these texts, we create two cases: one for keyword extraction (Autism (Keys) and Anarchism (Keys)) and another for finding adjectives (Autism (POS) and Anarchism (POS)), as outlined in “TABLE. I”.
 
