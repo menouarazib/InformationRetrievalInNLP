@@ -9,7 +9,7 @@ We use two extensive English texts sourced from the Wikipedia dump [[2]](#2). On
 And, represent ground truth keywords and tags as real-time events.
 
 # Text As Time Series using Word2Vec
-![Word2Vec](https://raw.githubusercontent.com/menouarazib/InformationRetrievalInNLP/master/images/Results.png)
+![Word2Vec](https://raw.githubusercontent.com/menouarazib/InformationRetrievalInNLP/master/images/Word2vec-embedding.png)
 
 To convert a text into a real-time series, we initially tokenize the text into individual words. Following tokenization, we leverage word embedding techniques like Word2Vec [[4]](#4). Word2Vec transforms words into dense numerical representations within a high-dimensional space, typically comprising 300 features.
 The following code snippet illustrates this process:
