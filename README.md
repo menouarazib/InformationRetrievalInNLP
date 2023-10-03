@@ -1,5 +1,5 @@
 #   Introduction
-In this work, we propose an innovative approach by adapting the technique used for Event Detection in Multivariate Time Series Data [[1]](#1) to address tasks in Natural Language Processing (NLP), specifically keyword extraction and the identification of tags for part-of-speech tagging (POS) in textual data.
+In this work, we propose an innovative approach by adapting the technique used for Event Detection in Multivariate Time Series Data [[1]](#1) to address tasks in Natural Language Processing (NLP), specifically keyword extraction and the identification of tags for part-of-speech tagging (POS) in textual data. This work will be presented at [22nd ICMLA 2023](https://www.icmla-conference.org/icmla23/).
 
 # Requirements
 You must have the `eventdetector-ts` package installed. You can find it [here](https://pypi.org/project/eventdetector-ts/). Additionally, please refer to the `requirements.txt` file for a list of other necessary libraries.
